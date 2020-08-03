@@ -1,4 +1,4 @@
-package com.thymeleaf.example;
+package com.oauth2.example;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
