@@ -8,6 +8,7 @@ import org.springframework.security.oauth2.config.annotation.configurers.ClientD
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
+import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 
 
 @Configuration
@@ -38,7 +39,11 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
 			.withClient("client3")
 			.secret("client3")
 			.scopes("read")
-			.authorizedGrantTypes("client_credentials");
+			.authorizedGrantTypes("client_credentials")
+		.and()
+			//resource server
+			.withClient("resource")
+			.secret("12345");
 	}
 
 	@Override
@@ -47,4 +52,10 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
 		endpoints.userDetailsService(inMemoryUserDetailsManager);
 	}
 
+	@Override
+	public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+		security.checkTokenAccess("isAuthenticated()");
+	}
+
+	
 }
