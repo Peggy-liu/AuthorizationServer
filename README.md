@@ -5,5 +5,4 @@
 2)Spring Security
 3)Spring Cloud Oauth2
 
-! [image of security]
- (https://github.com/Peggy-liu/AuthorizationServer-1-/blob/master/security.png)
+! [image of security](security.png)
